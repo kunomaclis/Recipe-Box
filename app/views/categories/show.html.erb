@@ -10,8 +10,9 @@
 
   <% @category.recipes.each do |recipe|%>
   <tr>
-  <td><%= link_to "#{recipe.title}", %></td>
-    <td><%= recipe.user.email%></td>
+  <td><%= link_to "#{recipe.title}", recipe_path(recipe)%></td>
+    <td><%= link_to "#{recipe.user.email}", '/' %></td>
+    <!-- NEED TO ADD USER SHOW PATH ONCE USER SHOW WORKING -->
     <td><%= recipe.difficulty%></td>
     <td><%= recipe.prep_time%></td>
   </tr>
