@@ -39,7 +39,14 @@ Category.create!(name: "Vegetarian")
     )
 end
 
-
+Metric.create(name:"Cups")
+Metric.create(name:"Pints")
+Metric.create(name:"Quarts")
+Metric.create(name:"Liters")
+Metric.create(name:"Ounces")
+Metric.create(name:"Grams")
+Metric.create(name:"Teaspoons")
+Metric.create(name:"Tablespoons")
 
 recipe_ingredients = Recipe.first.recipe_ingredients.new
 recipe_ingredients.metric = metric
