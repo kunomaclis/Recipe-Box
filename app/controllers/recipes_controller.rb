@@ -34,10 +34,20 @@ class RecipesController < ApplicationController
   end
 
   def create
+    @ingredient = Ingredient.find_or_create_by(name: recipe_ingredients_params[:ingredient])
+    @metric = Metric.find(recipe_ingredients_params[:metric])
+    @amount = Amount.find_or_create_by(number: recipe_ingredients_params[:amount])
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
 
     if @recipe.save
+      @recipe.recipe_ingredients.create(
+        ingredient: @ingredient,
+        metric: @metric,
+        amount: @amount
+        )
+     binding.pry
+
       redirect_to @recipe
     else
       render :action => 'new'
@@ -61,6 +71,10 @@ class RecipesController < ApplicationController
 private
   def recipe_params
     params.require(:recipe).permit(:title, :summary, :difficulty, :prep_time, :instructions, :category_id, :user_id)
+  end
+
+  def recipe_ingredients_params
+    params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
   end
 end
 

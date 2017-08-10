@@ -15,49 +15,64 @@
   <% end %>
 
   <div class="form-group row">
-  <label class= "col-md-2 col-form-label"><%= f.label :title %></label>
+    <label class= "col-md-2 col-form-label"><%= f.label :title %></label>
     <div class="col-md-10">
      <input type="text" class= "form-control" <%= f.text_field :title %>
-     </div>
-  </div>
+   </div>
+ </div>
 
-  <div class="form-group row">
-    <label class= "col-md-2 col-form-label"><%= f.label :summary %></label>
-    <div class="col-md-10">
-      <input type="text" class= "form-control"<%= f.text_field :summary %>
-    </div>
+ <div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :summary %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :summary %>
   </div>
+</div>
 
-  <div class="form-group row">
-    <label class= "col-md-2 col-form-label"><%= f.label :difficulty %></label>
-    <div class="col-md-10">
-      <input type="text" class= "form-control"<%= f.text_field :difficulty %>
-    </div>
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :difficulty %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :difficulty %>
   </div>
+</div>
 
-  <div class="form-group row">
-    <label class= "col-md-2 col-form-label"><%= f.label :prep_time %></label>
-    <div class="col-md-10">
-      <input type="text" class= "form-control"<%= f.text_field :prep_time %>
-    </div>
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :prep_time %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :prep_time %>
   </div>
+</div>
 
-  <div class="form-group row">
-    <label class= "col-md-2 col-form-label"><%= f.label :instructions %></label>
-    <div class="col-md-10">
-      <input type="text" class= "form-control"<%= f.text_field :instructions %>
-    </div>
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :instructions %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :instructions %>
   </div>
+</div>
 
 
-  <div class="form-group col-md-10 row">
-      <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "category"%>
+<div class="form-group col-md-10 row">
+  <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "category"%>
+</div>
 
+<div class="form-inline">
+ <div class="form-group col-md-10 row">
+  <%= form_for :recipe_ingredients do |ingred_form| %>
+  <div class="form-group">
+    <%= ingred_form.label :ingredient %>
+    <%= ingred_form.text_field :ingredient, class:'form-control'%><br><br>
+    <%= ingred_form.label :amount%>
+    <%= ingred_form.text_field :amount, class:'form-control'%><br><br>
+    <%= ingred_form.label :metric%>
+    <%= ingred_form.collection_select :metric, Metric.order(:name), :id, :name, include_blank: "metric", class:'form-control'%><br><br>
   </div>
-  <br>
-  <br>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="actions">
+  <%= f.submit %>
+</div>
   <% end %>
+</div>
+</div>
+
+<br>
+<br>
+<% end %>
 </div>

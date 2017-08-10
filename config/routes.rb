@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :recipes
   post 'recipes/:id/favorite', to: 'recipes#toggle_favorite', as: 'favorite_recipe'
+
   # get 'users/:id', controller: 'users', action:'show'
   # get '/users/:id', to:'users#show'
 
