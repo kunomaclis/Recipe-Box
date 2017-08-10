@@ -7,7 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'Faker'
 
-10.times do
+User.create!(
+    email: "test@test.com",
+    password: "password"
+    )
+
+6.times do
   Category.create!(
     name: Faker::Hipster.word
     )
@@ -20,8 +25,8 @@ end
     difficulty: "easy",
     prep_time: "30 min",
     instructions: Faker::Hipster.paragraph,
-    category_id: Faker::Number.between(0,11),
-    user_id: 2
+    category_id: Faker::Number.between(0,6),
+    user_id: 1
     )
 end
 
