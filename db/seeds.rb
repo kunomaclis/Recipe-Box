@@ -8,9 +8,13 @@
 require 'Faker'
 
 User.create!(
-    email: "test@test.com",
+    email: "testing@testing.com",
     password: "password"
     )
+
+ingredient = Ingredient.create!(name: "carrot")
+metric = Metric.create!(name: "oz")
+amount = Amount.create!(number: 3)
 
 6.times do
   Category.create!(
@@ -25,8 +29,16 @@ end
     difficulty: "easy",
     prep_time: "30 min",
     instructions: Faker::Hipster.paragraph,
-    category_id: Faker::Number.between(0,6),
+    category_id: 1,
     user_id: 1
     )
 end
+
+
+
+recipe_ingredients = Recipe.first.recipe_ingredients.new
+recipe_ingredients.metric = metric
+recipe_ingredients.amount = amount
+recipe_ingredients.ingredient = ingredient
+recipe_ingredients.save
 
