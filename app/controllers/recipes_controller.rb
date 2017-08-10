@@ -15,9 +15,9 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       # add favorite
-    @user.favorites.create(recipe: @recipe, user: @user)
-    redirect_to @recipe
-  end
+      @user.favorites.create(recipe: @recipe, user: @user)
+      redirect_to @recipe
+    end
   end
   # Create new recipe object
   # call .recipe_ingredients.new ON the new object
@@ -34,50 +34,53 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
-
-    @ingredient = Ingredient.find_or_create_by(name: recipe_ingredients_params[:ingredient])
-    @metric = Metric.find(recipe_ingredients_params[:metric])
-    @amount = Amount.find_or_create_by(number: recipe_ingredients_params[:amount])
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
+    all = params[:recipe_ingredients][:recipe_ingredients]
+    all.each do |stat|
+      @ingredient = Ingredient.find_or_create_by(name: stat[:ingredient])
+      @metric = Metric.find(stat[:metric])
+      @amount = Amount.find_or_create_by(number: stat[:amount])
 
+
+
+      if @recipe.save
+        @recipe.recipe_ingredients.create(
+          ingredient: @ingredient,
+          metric: @metric,
+          amount: @amount
+          )
+      end
+    end
     if @recipe.save
-      @recipe.recipe_ingredients.create(
-        ingredient: @ingredient,
-        metric: @metric,
-        amount: @amount
-        )
-     binding.pry
-
       redirect_to @recipe
     else
       render :action => 'new'
     end
-
   end
 
-  def update
-    @recipe = Recipe.find(params[:id])
+end
 
-    if @recipe.update(params[:recipe])
-      redirect_to @recipe
-    else
-      render :action => 'edit'
-    end
-  end
+def update
+  @recipe = Recipe.find(params[:id])
 
-  def destroy
+  if @recipe.update(params[:recipe])
+    redirect_to @recipe
+  else
+    render :action => 'edit'
   end
+end
+
+def destroy
+end
 
 private
-  def recipe_params
-    params.require(:recipe).permit(:title, :summary, :difficulty, :prep_time, :instructions, :category_id, :user_id)
-  end
+def recipe_params
+  params.require(:recipe).permit(:title, :summary, :difficulty, :prep_time, :instructions, :category_id, :user_id)
+end
 
-  def recipe_ingredients_params
-    params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
-  end
+def recipe_ingredients_params
+  params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
 end
 
 
