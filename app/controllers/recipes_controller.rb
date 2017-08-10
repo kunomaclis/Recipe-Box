@@ -9,9 +9,4 @@ class RecipesController < ApplicationController
   # Recipe.first.recipe_ingredients.includes(:ingredient, :metric, :amount).each {|x| p x.ingredient; p x.metric; p x.amount }
 end
 
-# <% @recipe.recipe_ingredients.includes(:ingredient, :metric, :amount).each do |x| %>
-    # <li> <%= x.ingredient.name;%> </li>
-    # <li> <%= x.metric.name; %> </li>
-    # <li> <%= x.amount.number %> </li>
 
-    # <%end%>

@@ -19,9 +19,13 @@
     <%end%>
   </ol>
   <div class="col-md-4">
+  <h1>Ingredients</h1>
+    <% @recipe.recipe_ingredients.includes(:ingredient, :metric, :amount).each do |x| %>
+    <li> <%= x.amount.number %> <%= x.metric.name; %> of <%= x.ingredient.name;%>  </li>
 
 
-    <h1>dicksadwadaw dawdwadawdaw </h1>
+
+    <%end%>
   </div>
 </div>
 
