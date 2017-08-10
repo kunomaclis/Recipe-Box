@@ -16,11 +16,16 @@ ingredient = Ingredient.create!(name: "carrot")
 metric = Metric.create!(name: "oz")
 amount = Amount.create!(number: 3)
 
-6.times do
-  Category.create!(
-    name: Faker::Hipster.word
-    )
-end
+Category.create!(name: "Breakfast")
+Category.create!(name: "Lunch")
+Category.create!(name: "Dinner")
+Category.create!(name: "Dessert")
+Category.create!(name: "Smoothies")
+Category.create!(name: "Cocktails")
+Category.create!(name: "Appetizers")
+Category.create!(name: "Vegan")
+Category.create!(name: "Vegetarian")
+
 
 5.times do
   Recipe.create!(
