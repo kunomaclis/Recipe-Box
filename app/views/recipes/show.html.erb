@@ -1,1 +1,27 @@
-<h1><%= @recipe.title %></h1>
+<div class="row text-center">
+  <div class="col-md-12 bg-success">
+    <h1><%= @recipe.title %></h1>
+    <h4><i>Prep Time: <%=@recipe.prep_time%> | Difficulty: <%=@recipe.difficulty%></i> </h4>
+    <p><%= @recipe.summary %></p>
+
+    <!-- Ingredients container for desktop -->
+    <!-- Recipe container col-md-10 -->
+    <!-- Ingredients will be position fixed on the right of recipe -->
+    <!-- Make media query to remove fixed for mobile (maybe convert to col-md-2?) -->
+  </div>
+</div>
+
+<div class="row text-left bg-info">
+  <% lines = @recipe.instructions.split("\n")%>
+  <ol class='list-group col-md-8'>
+    <% lines.each do |line| %>
+    <li class="list-group-item"><%= line%></li>
+    <%end%>
+  </ol>
+  <div class="col-md-4">
+
+
+    <h1>dicksadwadaw dawdwadawdaw </h1>
+  </div>
+</div>
+
