@@ -34,6 +34,8 @@ class RecipesController < ApplicationController
   end
 
   def create
+    binding.pry
+
     @ingredient = Ingredient.find_or_create_by(name: recipe_ingredients_params[:ingredient])
     @metric = Metric.find(recipe_ingredients_params[:metric])
     @amount = Amount.find_or_create_by(number: recipe_ingredients_params[:amount])
