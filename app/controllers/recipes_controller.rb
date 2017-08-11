@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
         ingredient: @ingredient,
         metric: @metric,
         amount: @amount
-        )
+                        )
       end
     end
     if @recipe.save
@@ -58,14 +58,14 @@ class RecipesController < ApplicationController
     @recipe.destroy
     current_user.favorites.each do |favorite|
       favorite.destroy if favorite.recipe.nil? 
-      end
+    end
     redirect_to current_user
   end
   
   def toggle_favorite
     @recipe = Recipe.find(params[:id])
     @user = current_user
-
+    
     if found_favorite(@user, @recipe)
       # remove
       found_favorite(@user, @recipe).destroy
