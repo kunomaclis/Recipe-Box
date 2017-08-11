@@ -89,18 +89,14 @@ class RecipesController < ApplicationController
 
   def add_rating
     @recipe = Recipe.find(params[:id])
-    binding.pry
     if current_user
-      found_rating = Rating.all.find_by(user_id: current_user.id, recipe_id: @recipe.id)
+      found_rating = Rating.all.find_by(user: current_user, recipe: @recipe)
       if found_rating
-        binding.pry
-        found_rating.value = rating_params
+        found_rating.value = rating_params[:value]
         found_rating.save
         redirect_to @recipe
       else
-        rating = Rating.create!(rating_params)
-        current_user.ratings << rating && @recipe.ratings << rating
-        binding.pry
+        rating = Rating.create(value: rating_params[:value], user: current_user, recipe: @recipe)
         redirect_to @recipe
       end
     else
@@ -119,7 +115,7 @@ class RecipesController < ApplicationController
   end
 
   def rating_params
-    params.require(:ratings).permit(:value, :user_id, :recipe_id)
+    params.require(:ratings).permit(:value)
   end
 
 end
