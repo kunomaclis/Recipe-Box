@@ -95,7 +95,7 @@ class RecipesController < ApplicationController
         found_rating.value = params[:vote]
         found_rating.save
       else
-        rating = Rating.new(params[:vote])
+        rating = Rating.new(rating_params)
         current_user.ratings << rating && @recipe.ratings << rating
       end
     else
@@ -112,4 +112,9 @@ class RecipesController < ApplicationController
   def recipe_ingredients_params
     params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
   end
+
+  def rating_params
+    params.require(:rating).permit(:value)
+  end
+
 end
