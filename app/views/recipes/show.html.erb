@@ -2,39 +2,35 @@
   <div class="col-md-12">
 
     <h1><%= @recipe.title %> <%if current_user%>
-    <!-- Toggle full croissant or empty croissant  -->
-    <%if found_favorite(current_user, @recipe)%>
-        <%=link_to('Unfavorite', favorite_recipe_path(@recipe), method: :post ) %>
-        <%else%>
-        <%=link_to('Favorite', favorite_recipe_path(@recipe), method: :post ) %>
-      </h1>
-      <%end%>
-      <%end%>
-      <h4><i>Rating: placeholder_rating | <i>Prep Time: <%=@recipe.prep_time%> | Difficulty: <%=@recipe.difficulty%></i> </h4>
-      <p><%= @recipe.summary %></p>
-
-      <!-- Ingredients container for desktop -->
-      <!-- Recipe container col-md-10 -->
-      <!-- Ingredients will be position fixed on the right of recipe -->
-      <!-- Make media query to remove fixed for mobile (maybe convert to col-md-2?) -->
-    </div>
+      <!-- Toggle full croissant or empty croissant  -->
+      <%if found_favorite(current_user, @recipe)%>
+      <%=link_to('Unfavorite', favorite_recipe_path(@recipe), method: :post ) %>
+      <%else%>
+      <%=link_to('Favorite', favorite_recipe_path(@recipe), method: :post ) %>
+    </h1>
+    <%end%>
+    <%end%>
+    <h4><i>Rating: placeholder_rating | <i>Prep Time: <%=@recipe.prep_time%> | Difficulty: <%=@recipe.difficulty%></i> </h4>
+    <p><%= @recipe.summary %></p>
   </div>
+</div>
 
-  <div class="row text-left">
-    <% lines = @recipe.instructions.split("\n")%>
-    <br>
-    <ul class='list-group col-md-8'>
-      <% lines.each do |line| %>
-      <li class="list-group-item"><%= line%></li>
-      <%end%>
-    </ul>
-    <div class="col-md-4">
-      <h1>Ingredients</h1>
-      <% @recipe.recipe_ingredients.includes(:ingredient, :metric, :amount).each do |x| %>
-      <li> <%= x.amount.number %> <%= x.metric.name; %> of <%= x.ingredient.name;%>  </li>
+<div class="row text-center">
+  <div class="col-md-4">
+    <h1>Ingredients</h1>
+    <% @recipe.recipe_ingredients.includes(:ingredient, :metric, :amount).each do |x| %>
+    <li> <%= x.amount.number %> <%= x.metric.name; %> of <%= x.ingredient.name;%>  </li>
 
 
-      <%end%>
-    </div>
+    <%end%>
   </div>
+  <h1>Instructions:</h1>
+  <% lines = @recipe.instructions.split("\n")%>
+  <ul class='list-group col-md-8'>
+    <% lines.each do |line| %>
+    <li class="list-group-item"><%=line%></li>
+    <%end%>
+  </ul>
+
+</div>
 
