@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
   include RecipesHelper
 
   def index
+    #binding.pry
     @recipes = Recipe.all
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
@@ -89,15 +90,5 @@ class RecipesController < ApplicationController
     params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
   end
 
-
-  def index #for seaches
-    @recipes = Recipe.all
-    #recipes.search(params[:search])
-    if params[:search]
-      @recipes = Recipe.search(params[:search]).order("created_at DESC")
-    else
-      @recipes = Recipe.all.order("created_at DESC")
-    end
-  end
 
 end
