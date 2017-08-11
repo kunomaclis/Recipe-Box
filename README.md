@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kunomaclis/Recipe-Box.svg?branch=master)](https://travis-ci.org/kunomaclis/Recipe-Box)
 
+
 ## Introduction
 Recipe database that allows users to post their favorite recipes to specific categories
 
