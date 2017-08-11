@@ -4,4 +4,8 @@ module RecipesHelper
    Favorite.find_by(user_id: user.id, recipe_id: recipe.id)
   end
 
+  def owns_recipe(user, recipe)
+    return true if recipe.user_id == user.id
+  end
+
 end
