@@ -28,6 +28,10 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    if owns_recipe(current_user, @recipe)
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def create
@@ -38,7 +42,6 @@ class RecipesController < ApplicationController
       @ingredient = Ingredient.find_or_create_by(name: stat[:ingredient])
       @metric = Metric.find(stat[:metric])
       @amount = Amount.find_or_create_by(number: stat[:amount])
-
       next unless @recipe.save
       @recipe.recipe_ingredients.create(
         ingredient: @ingredient,
@@ -55,21 +58,28 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-
+    if owns_recipe(current_user, @recipe)
+      if @recipe.update(params[:recipe])
+        redirect_to @recipe
+      else
+        render action: 'edit'
+      end
     if @recipe.update_attributes(recipe_params)
       redirect_to @recipe
     else
-      render action: 'edit'
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
+    raise ActionController::RoutingError.new('Not Found') if !owns_recipe(current_user, @recipe)
     @recipe.destroy
     current_user.favorites.each do |favorite|
       favorite.destroy if favorite.recipe.nil?
     end
     redirect_to current_user
+  else
   end
 
   def toggle_favorite
@@ -87,6 +97,24 @@ class RecipesController < ApplicationController
     end
   end
 
+
+  def add_rating
+    @recipe = Recipe.find(params[:id])
+    if current_user
+      found_rating = Rating.all.find_by(user: current_user, recipe: @recipe)
+      if found_rating
+        found_rating.value = rating_params[:value]
+        found_rating.save
+        # flash if !rating.valid?
+        redirect_to @recipe
+      else
+        rating = Rating.create(value: rating_params[:value], user: current_user, recipe: @recipe)
+        # flash if !rating.valid?
+        redirect_to @recipe
+      end
+    else
+      redirect_to new_user_session
+
   def ingredient
     if request.xhr?
       render partial: "ingredient_form"
@@ -103,6 +131,10 @@ class RecipesController < ApplicationController
 
   def recipe_ingredients_params
     params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
+  end
+
+  def rating_params
+    params.require(:ratings).permit(:value)
   end
 
 

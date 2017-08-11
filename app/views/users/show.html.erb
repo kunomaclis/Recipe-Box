@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class= "selection">
-      <h2>My Favorite Recipes</h2>
+      <h2>Favorite Recipes</h2>
       <% @user.favorites.each do |favorite| %>
         <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe)%> by <%=link_to "#{favorite.recipe.user.email}", user_path(favorite.recipe.user)%>
       <br>
@@ -13,11 +13,14 @@
 
   <div class="col-md-6">
     <div class= "selection">
-      <h2>Recipes I've Posted</h2>
+      <h2>Recipes Posted</h2>
       <% @user.recipes.each do |recipe| %>
-      <strong><%= link_to "#{recipe.title}", recipe_path(recipe) %></strong> |
-      <%= link_to "edit", edit_recipe_path(recipe.id) %> |
+
+      <strong><%= link_to "#{recipe.title}", recipe_path(recipe) %></strong>
+      <% if owns_recipe(current_user, recipe) %>
+      <%= link_to "edit", edit_recipe_path(recipe.id)%> |
       <%= link_to "delete", recipe_path(recipe.id), method: :delete, data: {confirm: 'Are you sure you want to delete this recipe?'} %>
+      <%end%>
       <br>
       <% end %>
     </div>
