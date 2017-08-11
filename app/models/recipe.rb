@@ -13,4 +13,10 @@ class Recipe < ApplicationRecord
     where("title ILIKE ? OR ingredients ILIKE ? OR instructions ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
-end
+  def total
+   ratings_num = self.ratings.inject(0) do |total, rating|
+     total += rating.value
+   end
+   binding.pry
+   ratings_num%self.ratings.count
+ end
