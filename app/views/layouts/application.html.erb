@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RecipeBox</title>
-    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i" rel="stylesheet">
-    <%= csrf_meta_tags %>
+<head>
+  <title>RecipeBox</title>
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i" rel="stylesheet">
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
 
   <header>
   <nav class="navbar navbar-inverse">
@@ -27,12 +27,10 @@
 
     <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Recipes">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+    <%= form_tag(recipes_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: "form-control" %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+    <% end %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Add Recipe", new_recipe_path%></li>
         <li><%= link_to "#{current_user.email}", current_user%></li>
@@ -43,12 +41,10 @@
     <% else %>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search Recipes">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+    <%= form_tag(recipes_path, :method => "get", id: "search-form", class: "navbar-form navbar-left") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: "form-control" %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-default" %>
+    <% end %>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to('Sign in', new_user_session_path) %></li>
         <li><%= link_to('Sign up', new_user_registration_path) %></li>
@@ -65,5 +61,5 @@
     <%= render 'layouts/messages' %>
     <%= yield %>
   </div>
-  </body>
+</body>
 </html>

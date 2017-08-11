@@ -4,14 +4,14 @@ class Recipe < ApplicationRecord
   has_many :comments
   has_many :ratings
   has_many :recipe_ingredients
+  has_many :ingredients, through: :recipe_ingredients
   belongs_to :category
   belongs_to :user
-  # has_many :amounts
-  # has_many :amounts, through: :recipe_ingredients
-  # has_many :metrics
-  # has_many :metrics, through: :recipe_ingredients
-  # has_many :ingredients
-  # has_many :ingredients, through: :recipe_ingredients
-
   accepts_nested_attributes_for :recipe_ingredients
+
+  def self.search(search)
+    #joins is used to bring the ingredients table into the search query
+    joins(:ingredients).where("title ILIKE ? OR instructions ILIKE ? OR ingredients.name ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
 end
