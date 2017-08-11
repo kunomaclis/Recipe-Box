@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   resources :users, :only =>[:show]
   resources :categories
   resources :recipes
+  get '/recipes/new/ingredient' => 'recipes#ingredient'
   post 'recipes/:id/favorite', to: 'recipes#toggle_favorite', as: 'favorite_recipe'
 
   # get 'users/:id', controller: 'users', action:'show'
   # get '/users/:id', to:'users#show'
-
-
+  # get 'new/ingredient', to: 'recipes#ingredient'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

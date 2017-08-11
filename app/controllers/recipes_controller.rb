@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  respond_to :html, :js
+
   include RecipesHelper
 
   def show
@@ -7,6 +9,11 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
+    end
   end
 
   def edit
@@ -67,6 +74,14 @@ class RecipesController < ApplicationController
       # add favorite
       @user.favorites.create(recipe: @recipe, user: @user)
       redirect_to @recipe
+    end
+  end
+
+  def ingredient
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
     end
   end
 

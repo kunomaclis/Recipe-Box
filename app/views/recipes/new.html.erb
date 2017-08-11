@@ -50,20 +50,20 @@
 </div>
 
 
-<div class="form-group col-md-10 row">
+<div class="form-group col-md-10 row new-ingredient">
   <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "category"%>
 </div>
 
-<%= render partial: 'ingredient' %>
+<%= render partial: "ingredient_form" %>
+</div>
 
-<div class="actions">
+<%= link_to "add ingredient", recipes_new_ingredient_path, class: "add-ingredient" %>
+
+<div class="actions" name="recipe-save">
   <%= f.submit %>
 </div>
-</div>
-</div>
-</div>
 
+</div>
 <br>
 <br>
 <% end %>
-

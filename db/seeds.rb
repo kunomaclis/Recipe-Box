@@ -46,6 +46,7 @@ Metric.create(name:"Grams")
 Metric.create(name:"Teaspoons")
 Metric.create(name:"Tablespoons")
 
+
 recipe_ingredients = Recipe.first.recipe_ingredients.new
 recipe_ingredients.metric = metric
 recipe_ingredients.amount = amount
