@@ -6,3 +6,14 @@
   border: 2px solid white;
   /* the white border's for spacing*/
 }
+
+body {
+  background-image: url("cocina.gif");
+  background-repeat: repeat;
+}
+
+.container {
+  background-color: gainsboro;
+  box-shadow: 10px 10px 5px gray;
+  border-radius: 5px;
+}
