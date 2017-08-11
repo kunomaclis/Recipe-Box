@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root "categories#index"
   devise_for :users
   resources :users, :only =>[:show]
-  resources :categories
   resources :recipes
+  resources :categories
   post 'recipes/:id/favorite', to: 'recipes#toggle_favorite', as: 'favorite_recipe'
 
   # get 'users/:id', controller: 'users', action:'show'
