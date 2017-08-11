@@ -87,6 +87,22 @@ class RecipesController < ApplicationController
     end
   end
 
+  def add_rating
+    @recipe = Recipe.find(params[:id])
+    if current_user
+      found_rating = Rating.all.find_by(user_id: current_user.id, recipe_id: @recipe.id)
+      if found_rating
+        found_rating.value = params[:vote]
+        found_rating.save
+      else
+        rating = Rating.new(params[:vote])
+        current_user.ratings << rating && @recipe.ratings << rating
+      end
+    else
+      redirect_to new_user_session
+    end
+  end
+
   private
 
   def recipe_params
