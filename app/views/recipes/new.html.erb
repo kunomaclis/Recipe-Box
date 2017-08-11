@@ -1,30 +1,30 @@
-<div class="container">
-  <h1>Tell us what you're cookin'</h1>
-  <%= form_for(@recipe) do |f| %>
-  <% if @recipe.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      Can't save recipe because <%= pluralize(@recipe.errors.count, "error") %>!
-    </h2>
-    <ul>
-      <% @recipe.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
 
-  <div class="form-group row">
-    <label class= "col-md-2 col-form-label"><%= f.label :title %></label>
-    <div class="col-md-10">
-     <input type="text" class= "form-control" <%= f.text_field :title %>
-   </div>
+<h1>Tell us what you're cookin'</h1>
+<%= form_for(@recipe) do |f| %>
+<% if @recipe.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    Can't save recipe because <%= pluralize(@recipe.errors.count, "error") %>!
+  </h2>
+  <ul>
+    <% @recipe.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :title %></label>
+  <div class="col-md-10">
+   <input type="text" class= "form-control" <%= f.text_field :title %>
  </div>
+</div>
 
- <div class="form-group row">
+<div class="form-group row">
   <label class= "col-md-2 col-form-label"><%= f.label :summary %></label>
   <div class="col-md-10">
-    <input type="text" class= "form-control"<%= f.text_field :summary %>
+    <textarea type="text" class= "form-control textarea" cols = '10', rows = '5',<%= f.text_field :summary %></textarea>
   </div>
 </div>
 
@@ -45,7 +45,7 @@
 <div class="form-group row">
   <label class= "col-md-2 col-form-label"><%= f.label :instructions %></label>
   <div class="col-md-10">
-    <input type="text" class= "form-control"<%= f.text_field :instructions %>
+  <textarea type="text" class= "form-control" cols = '10', rows = '5', placeholder="please enter each instruction on a new line"<%= f.text_field :instructions %></textarea>
   </div>
 </div>
 
@@ -54,38 +54,16 @@
   <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "category"%>
 </div>
 
-<div class="form-inline">
- <div class="form-group col-md-10 row">
- <%= fields_for :recipe_ingredients do |ingred_form| %>
-  <div class="form-group">
-    <%= ingred_form.label :ingredient %>
-    <%= ingred_form.text_field 'recipe_ingredients[][ingredient]', class:'form-control'%><br><br>
-    <%= ingred_form.label :amount%>
-    <%= ingred_form.text_field 'recipe_ingredients[][amount]', class:'form-control'%><br><br>
-    <%= ingred_form.label :metric%>
-    <%= ingred_form.collection_select 'recipe_ingredients[][metric]', Metric.order(:name), :id, :name, include_blank: "metric", class:'form-control'%><br><br>
-  </div>
+<%= render partial: 'ingredient' %>
 
-  <% end %>
+<div class="actions">
+  <%= f.submit %>
 </div>
-<div class="form-group col-md-10 row">
- <%= fields_for :recipe_ingredients do |ingred_form| %>
-  <div class="form-group">
-    <%= ingred_form.label :ingredient %>
-    <%= ingred_form.text_field  'recipe_ingredients[][ingredient]', class:'form-control'%><br><br>
-    <%= ingred_form.label :amount%>
-    <%= ingred_form.text_field 'recipe_ingredients[][amount]', class:'form-control'%><br><br>
-    <%= ingred_form.label :metric%>
-    <%= ingred_form.collection_select 'recipe_ingredients[][metric]', Metric.order(:name), :id, :name, include_blank: "metric", class:'form-control'%><br><br>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  <% end %>
+</div>
 </div>
 </div>
 
 <br>
 <br>
 <% end %>
-</div>
+
