@@ -64,10 +64,11 @@ class RecipesController < ApplicationController
       else
         render action: 'edit'
       end
-    if @recipe.update_attributes(recipe_params)
-      redirect_to @recipe
-    else
-      raise ActionController::RoutingError.new('Not Found')
+      if @recipe.update_attributes(recipe_params)
+        redirect_to @recipe
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
     end
   end
 
@@ -79,7 +80,6 @@ class RecipesController < ApplicationController
       favorite.destroy if favorite.recipe.nil?
     end
     redirect_to current_user
-  else
   end
 
   def toggle_favorite
@@ -114,6 +114,8 @@ class RecipesController < ApplicationController
       end
     else
       redirect_to new_user_session
+    end
+  end
 
   def ingredient
     if request.xhr?
