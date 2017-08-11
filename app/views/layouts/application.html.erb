@@ -27,7 +27,7 @@
 
         <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <%= form_tag(recipes_path, method: "get", id: "search-form") do %>
+        <%= form_tag(recipes_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
           <div class="form-group">
             <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: 'form-control' %>
             <%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
