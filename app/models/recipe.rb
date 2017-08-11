@@ -14,4 +14,10 @@ class Recipe < ApplicationRecord
   # has_many :ingredients, through: :recipe_ingredients
 
   accepts_nested_attributes_for :recipe_ingredients
+
+
+  def self.search(search)
+    Recipe.where(self.arel_table[:title].matches('%#{search}%'))
+  end
+
 end

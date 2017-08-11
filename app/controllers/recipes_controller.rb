@@ -79,4 +79,16 @@ class RecipesController < ApplicationController
   def recipe_ingredients_params
     params.require(:recipe_ingredients).permit(:ingredient, :amount, :metric)
   end
+
+
+  def index #for seaches
+    @recipes = Recipe.all
+    #recipes.search(params[:search])
+    if params[:search]
+      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+    else
+      @recipes = Recipe.all.order("created_at DESC")
+    end
+  end
+
 end
