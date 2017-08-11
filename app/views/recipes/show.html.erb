@@ -1,5 +1,5 @@
 <div class="row text-center">
-  <div class="col-md-12 bg-success">
+  <div class="col-md-12">
 
     <h1><%= @recipe.title %> <%if current_user%>
     <!-- Toggle full croissant or empty croissant  -->
@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="row text-left bg-info">
+  <div class="row text-left">
     <% lines = @recipe.instructions.split("\n")%>
     <br>
     <ul class='list-group col-md-8'>

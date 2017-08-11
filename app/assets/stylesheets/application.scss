@@ -1,9 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+a {
+  color: #FCDE9C;
+}
+
 .category {
   padding: 25px;
-  border: 2px solid white;
+  border: 2px solid #ED7D3A;
+  border-radius: 3px;
   /* the white border's for spacing*/
 }
 
@@ -13,7 +18,13 @@ body {
 }
 
 .container {
-  background-color: gainsboro;
-  box-shadow: 10px 10px 5px gray;
+  color :gainsboro;
+  background-color: #381D2A;
+  box-shadow: 10px 10px 5px #BA5624;
   border-radius: 5px;
+}
+
+.list-group {
+  color: black;
+
 }
