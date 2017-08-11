@@ -1,7 +1,7 @@
 <h1 class="text-center">Recipe Box</h1>
   <div class="row text-center">
   <% @categories.each do |category| %>
-  <div class="col-md-4 category bg-success"> <%= link_to "#{category.name}", category_path(category) %> </div>
+  <div class="col-md-4 category"> <%= link_to "#{category.name}", category_path(category) %> </div>
   <% end %>
   </div>
 
