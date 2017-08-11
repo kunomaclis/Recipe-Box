@@ -1,6 +1,15 @@
 class RecipesController < ApplicationController
   include RecipesHelper
 
+  def index
+    @recipes = Recipe.all
+    if params[:search]
+      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+    else
+      @recipes = Recipe.all.order("created_at DESC")
+    end
+  end
+
   def show
     @recipe = Recipe.find(params[:id])
   end
@@ -27,7 +36,7 @@ class RecipesController < ApplicationController
         ingredient: @ingredient,
         metric: @metric,
         amount: @amount
-      )
+        )
     end
     if @recipe.save
       redirect_to @recipe
