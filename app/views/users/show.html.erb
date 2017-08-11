@@ -14,7 +14,7 @@
   <div class="col-md-6">
     <div class= "selection">
       <h2>Recipes I've Posted</h2>
-      <% @recipes.each do |recipe| %>
+      <% @user.recipes.each do |recipe| %>
       <strong><%= link_to "#{recipe.title}", recipe_path(recipe) %></strong> |
       <%= link_to "edit", edit_recipe_path %> |
       <%= link_to "delete", recipe_path(recipe.id), method: :delete, data: {confirm: 'Are you sure you want to delete this recipe?'} %>
