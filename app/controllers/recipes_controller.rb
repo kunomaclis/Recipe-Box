@@ -34,7 +34,6 @@ class RecipesController < ApplicationController
       @ingredient = Ingredient.find_or_create_by(name: stat[:ingredient])
       @metric = Metric.find(stat[:metric])
       @amount = Amount.find_or_create_by(number: stat[:amount])
-
       next unless @recipe.save
       @recipe.recipe_ingredients.create(
         ingredient: @ingredient,
@@ -64,15 +63,13 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:id])
-    if owns_recipe(current_user, @recipe)
-      @recipe.destroy
-      current_user.favorites.each do |favorite|
-        favorite.destroy if favorite.recipe.nil?
-      end
-      redirect_to current_user
-    else
-      raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError.new('Not Found') if !owns_recipe(current_user, @recipe)
+    @recipe.destroy
+    current_user.favorites.each do |favorite|
+      favorite.destroy if favorite.recipe.nil?
     end
+    redirect_to current_user
+  else
   end
 
   def toggle_favorite
