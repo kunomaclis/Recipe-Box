@@ -1,10 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.selection {
+  padding: 5px;
+  border: 8px solid #FCE8D0;
+  border-radius: 1px;
+  text-align: center
+  /* the white border's for spacing*/
+}
+
 .category {
-  padding: 25px;
-  border: 2px solid #eee7da;
-  border-radius: 3px;
+  padding: 50px;
+  border: 8px solid #FCE8D0;
+  border-radius: 1px;
   /* the white border's for spacing*/
 }
 

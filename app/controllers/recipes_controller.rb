@@ -56,15 +56,16 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
+    current_user.favorites.each do |favorite|
+      favorite.destroy if favorite.recipe.nil? 
+      end
     redirect_to current_user
   end
   
   def toggle_favorite
     @recipe = Recipe.find(params[:id])
     @user = current_user
-    # redirect_to @user if owns_recipe(@user, @recipe)
-    # With a param that says Hey You made This Stop
-    # Check if user has favored the recipe before
+
     if found_favorite(@user, @recipe)
       # remove
       found_favorite(@user, @recipe).destroy
