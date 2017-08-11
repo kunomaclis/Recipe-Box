@@ -3,13 +3,10 @@
 
 
 
-a {
-  color: #FCDE9C;
-}
 
 .category {
   padding: 25px;
-  border: 2px solid #ED7D3A;
+  border: 2px solid #eee7da;
   border-radius: 3px;
   /* the white border's for spacing*/
 }
@@ -17,12 +14,13 @@ a {
 body {
   background-image: url("cocina.gif");
   background-repeat: repeat;
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 0.75);
 }
 
 .container {
-  color :gainsboro;
-  background-color: #381D2A;
-  box-shadow: 10px 10px 5px #BA5624;
+
+  background-color: gainsboro;
+  box-shadow: 10px 10px 5px #381d2a;
   border-radius: 5px;
 }
 
