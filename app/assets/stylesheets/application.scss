@@ -1,9 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
-
 .category {
   padding: 25px;
   border: 2px solid #eee7da;
@@ -20,7 +17,7 @@ body {
 .container {
 
   background-color: gainsboro;
-  box-shadow: 10px 10px 5px #381d2a;
+  box-shadow: 10px 10px 4px gray;
   border-radius: 5px;
 }
 
