@@ -5,7 +5,7 @@
     <div class= "selection">
       <h2>My Favorite Recipes</h2>
       <% @user.favorites.each do |favorite| %>
-      <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe)%>
+      <%= link_to "#{favorite.recipe.title}", recipe_path(favorite.recipe)%> by <%=link_to "#{favorite.recipe.user.email}", user_path(favorite.recipe.user)%>
       <br>
       <% end %>
     </div>
