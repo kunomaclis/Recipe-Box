@@ -27,7 +27,7 @@
 
         <% if user_signed_in? %>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <%= form_tag(recipes_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
+          <%= form_tag(recipes_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
           <div class="form-group">
             <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: 'form-control' %>
             <%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
@@ -43,26 +43,26 @@
         <% else %>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <%= form_tag(recipes_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: 'form-control' %>
-            <%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
-            <% end %>
-            </div>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to('Sign in', new_user_session_path) %></li>
-            <li><%= link_to('Sign up', new_user_registration_path) %></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-        <% end %>
-      </div><!-- /.container-fluid -->
-    </nav>
+        <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Search Recipes", class: 'form-control' %>
+          <%= submit_tag "Search", name: nil, class: 'btn btn-default' %>
+          <% end %>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to('Sign in', new_user_session_path) %></li>
+          <li><%= link_to('Sign up', new_user_registration_path) %></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+      <% end %>
+    </div><!-- /.container-fluid -->
+  </nav>
 
 
 
-  </header>
-  <div class="container">
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-  </div>
+</header>
+<div class="container">
+  <%= render 'layouts/messages' %>
+  <%= yield %>
+</div>
 </body>
 </html>
