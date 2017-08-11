@@ -4,10 +4,9 @@ class RecipesController < ApplicationController
   include RecipesHelper
 
   def index
-    #binding.pry
     @recipes = Recipe.all
     if params[:search]
-      @recipes = Recipe.search(params[:search]).order("created_at DESC")
+      @recipes = Recipe.search(params[:search]).sort
     else
       @recipes = Recipe.all.order("created_at DESC")
     end
