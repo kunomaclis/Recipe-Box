@@ -1,9 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+
+body {
+  background-image: url("cocina.gif");
+  background-repeat: repeat;
+  text-shadow: 1px 1px 2px rgb(150, 150, 150);
+  font-family: 'Libre Baskerville', serif;
+  
+}
+
+
+
 .selection {
   padding: 5px;
-  border: 8px solid #FCE8D0;
+  border: 8px solid rgba(252, 232, 208, 0.56);
   border-radius: 1px;
   text-align: center
   /* the white border's for spacing*/
@@ -11,21 +23,16 @@
 
 .category {
   padding: 50px;
-  border: 8px solid #FCE8D0;
+  border: 8px solid rgba(252, 232, 208, 0.56);
   border-radius: 1px;
   /* the white border's for spacing*/
 }
 
-body {
-  background-image: url("cocina.gif");
-  background-repeat: repeat;
-  text-shadow: 1px 1px 2px rgba(150, 150, 150, 0.75);
-}
 
 .container {
 
-  background-color: gainsboro;
-  box-shadow: 10px 10px 4px gray;
+  background-color: #C0C0C0;
+  box-shadow: 10px 10px 5px rgba(56, 29, 42, 0.50);
   border-radius: 5px;
 }
 
