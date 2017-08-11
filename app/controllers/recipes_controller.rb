@@ -1,7 +1,10 @@
 class RecipesController < ApplicationController
+  respond_to :html, :js
+
   include RecipesHelper
 
   def index
+    #binding.pry
     @recipes = Recipe.all
     if params[:search]
       @recipes = Recipe.search(params[:search]).order("created_at DESC")
@@ -16,6 +19,11 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
+    end
   end
 
   def edit
@@ -56,6 +64,8 @@ class RecipesController < ApplicationController
       else
         render action: 'edit'
       end
+    if @recipe.update_attributes(recipe_params)
+      redirect_to @recipe
     else
       raise ActionController::RoutingError.new('Not Found')
     end
@@ -87,6 +97,7 @@ class RecipesController < ApplicationController
     end
   end
 
+
   def add_rating
     @recipe = Recipe.find(params[:id])
     if current_user
@@ -103,6 +114,12 @@ class RecipesController < ApplicationController
       end
     else
       redirect_to new_user_session
+
+  def ingredient
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
     end
   end
 
@@ -119,5 +136,6 @@ class RecipesController < ApplicationController
   def rating_params
     params.require(:ratings).permit(:value)
   end
+
 
 end

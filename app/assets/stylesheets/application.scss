@@ -9,6 +9,15 @@ body {
   text-shadow: 1px 1px 2px rgb(150, 150, 150);
   font-family: 'Libre Baskerville', serif;
 
+
+}
+
+h1 {
+  color: #918274;
+}
+
+
+
 }
 
 .selection {
@@ -20,23 +29,69 @@ body {
 }
 
 .category {
-  padding: 50px;
-  border: 8px solid rgba(252, 232, 208, 0.56);
-  border-radius: 1px;
-  /* the white border's for spacing*/
+  padding: 5px;
 }
 
-.dramatic {
+
+.container {
 
   background-color: #C0C0C0;
+  background-color: #f2ebe3;
   box-shadow: 10px 10px 5px rgba(56, 29, 42, 0.50);
   border-radius: 5px;
+  padding: 5px;
 }
 
 .list-group {
   color: black;
 
 }
+
+.picture {
+  text-align: justify;
+  color: white;
+  display: inline-block;
+  background-position: center;
+  width: 350px;
+  height: 150px;
+  box-shadow: 2px 2px 2px black;
+}
+
+  .picture-1 {
+    background-image: url("breakfast.jpg");
+  }
+
+  .picture-2 {
+    background-image: url("lunch.jpg");
+  }
+
+.picture-3 {
+    background-image: url("dinner.jpg");
+  }
+
+.picture-4 {
+    background-image: url("dessert.jpg");
+  }
+
+.picture-5 {
+    background-image: url("smoothies.jpg");
+  }
+
+.picture-6 {
+    background-image: url("cocktails.jpg");
+  }
+
+.picture-7 {
+    background-image: url("appetizers.jpg");
+  }
+
+.picture-8 {
+    background-image: url("vegan.jpg");
+  }
+
+.picture-9 {
+    background-image: url("vegetarian.jpg");
+  }
 
 $bgDefault      : #381d2a;
 $bgHighlight    : #ba5624;
