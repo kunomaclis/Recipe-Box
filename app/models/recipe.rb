@@ -6,12 +6,15 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients
   belongs_to :category
   belongs_to :user
-  # has_many :amounts
-  # has_many :amounts, through: :recipe_ingredients
-  # has_many :metrics
-  # has_many :metrics, through: :recipe_ingredients
-  # has_many :ingredients
-  # has_many :ingredients, through: :recipe_ingredients
-
   accepts_nested_attributes_for :recipe_ingredients
+
+  def self.search(search)
+  where("title ILIKE ? OR ingredients ILIKE ? OR instructions ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
+  end
+
+  def ingredients
+    self.recipe_ingredients.each do |ingredient|
+      put ingredient
+    end
+  end
 end
