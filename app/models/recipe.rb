@@ -9,7 +9,13 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :recipe_ingredients
 
   def self.search(search)
-  where("title ILIKE ? OR ingredients ILIKE ? OR instructions ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    binding.pry
+  where("title ILIKE ? OR ingredients ILIKE ? OR instructions ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
+  def ingredients
+    self.recipe_ingredients.each do |ingredient|
+      put ingredient
+    end
+  end
 end
