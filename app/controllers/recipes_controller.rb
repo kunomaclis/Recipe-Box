@@ -47,21 +47,28 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-
-    if @recipe.update(params[:recipe])
-      redirect_to @recipe
+    if owns_recipe(current_user, @recipe)
+      if @recipe.update(params[:recipe])
+        redirect_to @recipe
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
-    @recipe.destroy
-    current_user.favorites.each do |favorite|
-      favorite.destroy if favorite.recipe.nil?
+    if owns_recipe(current_user, @recipe)
+      @recipe.destroy
+      current_user.favorites.each do |favorite|
+        favorite.destroy if favorite.recipe.nil?
+      end
+      redirect_to current_user
+    else
+      raise ActionController::RoutingError.new('Not Found')
     end
-    redirect_to current_user
   end
 
   def toggle_favorite
