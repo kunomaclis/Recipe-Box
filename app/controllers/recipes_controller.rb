@@ -98,9 +98,9 @@ class RecipesController < ApplicationController
         found_rating.save
         redirect_to @recipe
       else
-        binding.pry
-        rating = Rating.new(rating_params)
+        rating = Rating.create!(rating_params)
         current_user.ratings << rating && @recipe.ratings << rating
+        binding.pry
         redirect_to @recipe
       end
     else
@@ -119,7 +119,7 @@ class RecipesController < ApplicationController
   end
 
   def rating_params
-    params.require(:ratings).permit(:value)
+    params.require(:ratings).permit(:value, :user_id, :recipe_id)
   end
 
 end
