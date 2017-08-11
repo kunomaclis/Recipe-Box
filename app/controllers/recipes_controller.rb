@@ -1,4 +1,6 @@
 class RecipesController < ApplicationController
+  respond_to :html, :js
+
   include RecipesHelper
 
   def index
@@ -17,6 +19,11 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
+    end
   end
 
   def edit
@@ -49,7 +56,7 @@ class RecipesController < ApplicationController
   def update
     @recipe = Recipe.find(params[:id])
 
-    if @recipe.update(params[:recipe])
+    if @recipe.update_attributes(recipe_params)
       redirect_to @recipe
     else
       render action: 'edit'
@@ -77,6 +84,14 @@ class RecipesController < ApplicationController
       # add favorite
       @user.favorites.create(recipe: @recipe, user: @user)
       redirect_to @recipe
+    end
+  end
+
+  def ingredient
+    if request.xhr?
+      render partial: "ingredient_form"
+    else
+      @recipe
     end
   end
 

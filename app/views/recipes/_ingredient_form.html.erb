@@ -1,0 +1,13 @@
+<div class="form-group col-md-10 row">
+ <%= fields_for :recipe_ingredients do |ingred_form| %>
+ <div class="form-group">
+  <%= ingred_form.label :ingredient %>
+  <%= ingred_form.text_field  'recipe_ingredients[][ingredient]', class:'form-control'%><br><br>
+  <%= ingred_form.label :amount%>
+  <%= ingred_form.text_field 'recipe_ingredients[][amount]', class:'form-control'%><br><br>
+  <%= ingred_form.label :metric%>
+  <%= ingred_form.collection_select 'recipe_ingredients[][metric]', Metric.order(:name), :id, :name, include_blank: "metric", class:'form-control'%><br><br>
+
+</div>
+
+<% end %>
