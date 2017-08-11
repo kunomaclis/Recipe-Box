@@ -17,6 +17,6 @@ class Recipe < ApplicationRecord
    ratings_num = self.ratings.inject(0) do |total, rating|
      total += rating.value
    end
-   binding.pry
    ratings_num%self.ratings.count
  end
+end

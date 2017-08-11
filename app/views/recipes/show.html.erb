@@ -1,7 +1,8 @@
 <div class="row text-center">
   <div class="col-md-12">
-
-    <h1><%= @recipe.title %> <%if current_user%>
+    <h1>
+      <%= @recipe.title %>
+      <%if current_user%>
       <!-- Toggle full croissant or empty croissant  -->
       <%if found_favorite(current_user, @recipe)%>
       <%=link_to('Unfavorite', favorite_recipe_path(@recipe), method: :post ) %>
@@ -33,4 +34,12 @@
   </ul>
 
 </div>
+  <p class="text-center"> Rate this recipe: <%= form_for :ratings, url: rate_recipe_path(@recipe),  html: {class: "form-inline text-center"} do |f| %>
+    <%= f.select(:value, [['great', 5], ['good', 4], ['mediocre', 3], ['poor', 2], ['horrible', 1]], options: {class: 'form-control'}) %>
+    <div class="actions">
+    <%= f.submit "Submit" %>
+<%end%>
+  </div>
 
+  </p>
+</div>
