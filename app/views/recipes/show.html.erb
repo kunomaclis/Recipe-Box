@@ -17,18 +17,18 @@
 
 <div class="row text-center">
   <div class="col-md-4">
-    <h1>Ingredients</h1>
+    <h2>Ingredients:</h2>
     <% @recipe.recipe_ingredients.includes(:ingredient, :metric, :amount).each do |x| %>
     <li> <%= x.amount.number %> <%= x.metric.name; %> of <%= x.ingredient.name;%>  </li>
 
 
     <%end%>
   </div>
-  <h1>Instructions:</h1>
+  <h2>Instructions:</h2>
   <% lines = @recipe.instructions.split("\n")%>
   <ul class='list-group col-md-8'>
     <% lines.each do |line| %>
-    <li class="list-group-item"><%=line%></li>
+    <li class="list-group-item"> <%=line%> </li>
     <%end%>
   </ul>
 

@@ -41,6 +41,7 @@
           </ul>
         </div><!-- /.navbar-collapse -->
         <% else %>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <!-- Collect the nav links, forms, and other content for toggling -->
         <%= form_tag(recipes_path, method: "get", id: "search-form", class: "navbar-form navbar-left") do %>
         <div class="form-group">
