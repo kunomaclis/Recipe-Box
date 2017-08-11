@@ -17,6 +17,7 @@ class Recipe < ApplicationRecord
    ratings_num = self.ratings.inject(0) do |total, rating|
      total += rating.value
    end
-   ratings_num / self.ratings.count.to_f
+   result = ratings_num / self.ratings.count.to_f
+   result.round(2)
  end
 end

@@ -94,9 +94,11 @@ class RecipesController < ApplicationController
       if found_rating
         found_rating.value = rating_params[:value]
         found_rating.save
+        # flash if !rating.valid?
         redirect_to @recipe
       else
         rating = Rating.create(value: rating_params[:value], user: current_user, recipe: @recipe)
+        # flash if !rating.valid?
         redirect_to @recipe
       end
     else
