@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # get 'users/:id', controller: 'users', action:'show'
   # get '/users/:id', to:'users#show'
   # get 'new/ingredient', to: 'recipes#ingredient'
-
+  get 'recipes/new/ingredient', to: 'recipes#ingredient'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
