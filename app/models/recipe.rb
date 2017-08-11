@@ -18,6 +18,7 @@ class Recipe < ApplicationRecord
      total += rating.value
    end
    result = ratings_num / self.ratings.count.to_f
+   return 'No Ratings!' if result.nan?
    result.round(2)
  end
 end
