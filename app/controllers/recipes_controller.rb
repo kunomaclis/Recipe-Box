@@ -20,6 +20,10 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    if owns_recipe(current_user, @recipe)
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
 
   def create
