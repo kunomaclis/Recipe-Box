@@ -1,0 +1,69 @@
+
+<h1>Update Your Recipe</h1>
+<%= form_for(@recipe) do |f| %>
+<% if @recipe.errors.any? %>
+<div id="error_explanation">
+  <h2>
+    Can't save recipe because <%= pluralize(@recipe.errors.count, "error") %>!
+  </h2>
+  <ul>
+    <% @recipe.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :title %></label>
+  <div class="col-md-10">
+   <input type="text" class= "form-control" <%= f.text_field :title %>
+ </div>
+</div>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :summary %></label>
+  <div class="col-md-10">
+    <textarea type="text" class= "form-control textarea" cols = '10', rows = '5',<%= f.text_field :summary %></textarea>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :difficulty %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :difficulty %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :prep_time %></label>
+  <div class="col-md-10">
+    <input type="text" class= "form-control"<%= f.text_field :prep_time %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <label class= "col-md-2 col-form-label"><%= f.label :instructions %></label>
+  <div class="col-md-10">
+  <textarea type="text" class= "form-control" cols = '10', rows = '5', placeholder="please enter each instruction on a new line"<%= f.text_field :instructions %></textarea>
+  </div>
+</div>
+
+
+<div class="form-group col-md-10 row new-ingredient">
+  <%= f.collection_select :category_id, Category.order(:name), :id, :name, include_blank: "category"%>
+</div>
+
+<%= render partial: "ingredient_form" %>
+</div>
+
+<%= link_to "add ingredient", recipes_new_ingredient_path, class: "add-ingredient" %>
+
+<div class="actions" name="recipe-save">
+  <%= f.submit %>
+</div>
+
+</div>
+<br>
+<br>
+<% end %>
