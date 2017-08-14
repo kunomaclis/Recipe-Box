@@ -1,14 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 body {
-  background-image: url("cocina.gif");
+  /*background-image: url("cocina.gif");*/
   background-repeat: repeat;
   text-shadow: 1px 1px 2px rgb(150, 150, 150);
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 h1 {
-  color: #918274;
+  color: #381d2a;
+}
+
+.navbar-brand {
+  font-family: 'Rochester', cursive;
+  font-size: 36px;
 }
 
 .selection {
@@ -24,8 +29,7 @@ h1 {
 }
 
 .container {
-  background-color: #C0C0C0;
-  background-color: #f2ebe3;
+  background-color: #FFFEE2;
   box-shadow: 10px 10px 5px rgba(56, 29, 42, 0.50);
   border-radius: 5px;
   padding: 5px;
@@ -43,6 +47,7 @@ h1 {
   width: 350px;
   height: 150px;
   box-shadow: 2px 2px 2px black;
+  font-size: 30px;
 }
 
 .picture-1 {
